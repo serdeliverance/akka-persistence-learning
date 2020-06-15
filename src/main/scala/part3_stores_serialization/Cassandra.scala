@@ -3,10 +3,10 @@ package part3_stores_serialization
 import akka.actor.{ActorSystem, Props}
 import com.typesafe.config.ConfigFactory
 
-object LocalStores extends App {
+object Cassandra extends App {
 
-  val localStoreActorSystem = ActorSystem("localStoreActorSystem", ConfigFactory.load().getConfig("localStores"))
-  val persistentActor = localStoreActorSystem.actorOf(Props[SimplePersistentActor], "simplePersistentActor")
+  val cassandraActorSystem = ActorSystem("cassandraActorSystem", ConfigFactory.load().getConfig("cassandraDemo"))
+  val persistentActor = cassandraActorSystem.actorOf(Props[SimplePersistentActor], "simplePersistentActor")
 
   for (i <- 1 to 10) {
     persistentActor ! s"I love Akka [$i]"
